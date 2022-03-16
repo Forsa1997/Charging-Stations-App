@@ -1,9 +1,5 @@
-import { render, screen } from '@testing-library/react';
 import Home from './Home';
-import Enzyme, { mount } from 'enzyme'
-import Adapter from '@wojtekmaj/enzyme-adapter-react-17'
-
-Enzyme.configure({ adapter: new Adapter() })
+import { mount } from 'enzyme'
 
 it('has a image', () => {
     const wrapper = mount(<Home />)
