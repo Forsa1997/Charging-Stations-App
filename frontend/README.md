@@ -7,7 +7,8 @@
 4 As User I want a Navbar visible at all times, that helps me to navigate the web page.
 
     That the user is on the website	the home page loads	a navbar should be visible.
-    That the user is on the website	the usere clicks on a link in the navbar	the page changes.
-    That the user is on the website	the usere clicks on a link in the navbar	the url changes.
-    That the user is on the website	the usere clicks on a link in the navbar	the navbar stays as it is.
-    That the user is on the website	the window gets resized smaller than the width of the nav elements	the elements of the navbar get compressed into a burger menu
+    That the user is on the website	the usere clicks on a link in the navbar the page changes.
+    That the user is on the website	the usere clicks on a link in the navbar the url changes.
+    That the user is on the website	the usere clicks on a link in the navbar the navbar stays as it is.
+    That the user is on the website	the window gets resized smaller than the width of 
+    the nav elements the elements of the navbar get compressed into a burger menu

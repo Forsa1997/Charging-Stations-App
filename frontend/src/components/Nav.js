@@ -17,8 +17,6 @@ import { Router } from 'react-router-dom';
 const pages = ['Map'];
 const settings = ['Profile', 'Account', 'Logout'];
 
-
-
 const Nav = () => {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -32,9 +30,9 @@ const Nav = () => {
         setAnchorElUser(event.currentTarget);
     };
 
-    const handleCloseNavMenu = () => {
-        navigate('/map')
+    const handleCloseNavMenu = (page = "") => {
         setAnchorElNav(null);
+        navigate(`/${page.toLowerCase()}`)
     };
 
     const handleCloseUserMenu = () => {
@@ -46,10 +44,12 @@ const Nav = () => {
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
                     <Typography
+                        className='logoButton'
                         variant="h6"
                         noWrap
                         component="div"
-                        sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
+                        sx={{ mr: 2, display: { xs: 'none', md: 'flex' }, cursor: 'pointer' }}
+                        onClick={() => handleCloseNavMenu()}
                     >
                         LOGO
                     </Typography>
@@ -84,7 +84,7 @@ const Nav = () => {
                             }}
                         >
                             {pages.map((page) => (
-                                <MenuItem key={page} onClick={handleCloseNavMenu}>
+                                <MenuItem className="menuButtonNav" key={page} onClick={() => handleCloseNavMenu(page)}>
                                     <Typography textAlign="center">{page}</Typography>
                                 </MenuItem>
 
@@ -92,18 +92,21 @@ const Nav = () => {
                         </Menu>
                     </Box>
                     <Typography
+                        className='logoButton'
                         variant="h6"
                         noWrap
                         component="div"
-                        sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}
+                        sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' }, cursor: 'pointer' }}
+                        onClick={() => handleCloseNavMenu()}
                     >
                         LOGO
                     </Typography>
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                         {pages.map((page) => (
                             <Button
+                                className="menuButtonNav"
                                 key={page}
-                                onClick={handleCloseNavMenu}
+                                onClick={() => handleCloseNavMenu(page)}
                                 sx={{ my: 2, color: 'white', display: 'block' }}
                             >
                                 {page}

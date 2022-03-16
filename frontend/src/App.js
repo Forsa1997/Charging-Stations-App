@@ -2,11 +2,12 @@ import logo from './logo.svg';
 import './App.css';
 import Nav from './components/Nav';
 import {
-  BrowserRouter,
   Routes,
   Route,
+  BrowserRouter,
 } from "react-router-dom";
 import Home from './components/Home';
+import Map from './components/Map'
 
 function App() {
   return (
@@ -14,7 +15,7 @@ function App() {
       <Nav />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/map" element={<Home />} />
+        <Route path="/map" element={<Map />} />
       </Routes>
     </BrowserRouter>
   );
