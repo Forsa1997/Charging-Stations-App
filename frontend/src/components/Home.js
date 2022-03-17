@@ -1,7 +1,7 @@
 const Home = () => (
     <div>
         Home
-        <img alt="Test image" />
+        <img alt="Test" />
         <ul>
             <li>1</li>
             <li>2</li>
