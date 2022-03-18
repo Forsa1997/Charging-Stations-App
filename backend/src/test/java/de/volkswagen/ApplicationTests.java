@@ -1,4 +1,4 @@
-package de.volkswagen.application;
+package de.volkswagen;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
