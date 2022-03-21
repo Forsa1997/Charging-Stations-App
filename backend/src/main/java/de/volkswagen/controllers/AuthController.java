@@ -32,16 +32,25 @@ import de.volkswagen.security.services.UserDetailsImpl;
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
-    @Autowired
+//    @Autowired
     AuthenticationManager authenticationManager;
-    @Autowired
+//    @Autowired
     UserRepository userRepository;
-    @Autowired
+//    @Autowired
     RoleRepository roleRepository;
-    @Autowired
+//    @Autowired
     PasswordEncoder encoder;
-    @Autowired
+//    @Autowired
     JwtUtils jwtUtils;
+
+    public AuthController(AuthenticationManager authenticationManager, UserRepository userRepository, RoleRepository roleRepository, PasswordEncoder encoder, JwtUtils jwtUtils) {
+        this.authenticationManager = authenticationManager;
+        this.userRepository = userRepository;
+        this.roleRepository = roleRepository;
+        this.encoder = encoder;
+        this.jwtUtils = jwtUtils;
+    }
+
     @PostMapping("/signin")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
         Authentication authentication = authenticationManager.authenticate(

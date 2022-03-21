@@ -9,9 +9,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import de.volkswagen.models.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.springframework.stereotype.Repository;
-import org.springframework.stereotype.Service;
-@Service
+
 public class UserDetailsImpl implements UserDetails {
     private static final long serialVersionUID = 1L;
     private Long id;
@@ -20,6 +18,7 @@ public class UserDetailsImpl implements UserDetails {
     @JsonIgnore
     private String password;
     private Collection<? extends GrantedAuthority> authorities;
+
     public UserDetailsImpl(Long id, String username, String email, String password,
                            Collection<? extends GrantedAuthority> authorities) {
         this.id = id;
