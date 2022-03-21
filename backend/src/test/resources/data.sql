@@ -21,5 +21,7 @@ create table roles (
 INSERT into users (username, email, password) VALUES ('admin','test@admin.de','password');
 
 INSERT into roles (name) VALUES ('ROLE_USER');
+INSERT into roles (name) VALUES ('ROLE_MODERATOR');
+INSERT into roles (name) VALUES ('ROLE_ADMIN');
 
 INSERT into user_roles (user_id,role_id) VALUES (1,1);
