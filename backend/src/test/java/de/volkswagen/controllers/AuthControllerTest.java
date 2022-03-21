@@ -24,8 +24,18 @@ public class AuthControllerTest {
 
     @Test
     void canAuthenticate() throws Exception {
-        mockMvc.perform(post("/signin").contentType(MediaType.APPLICATION_JSON)
-                        .content("{\"username\":\"ddd\",\"password\":\"ddd\"}"))
+        mockMvc.perform(post("/api/auth/signup").contentType(MediaType.APPLICATION_JSON)
+                        .content("{\"username\":\"useruser\",\"password\":\"password\",\"email\":\"test@test.de\"}"))
+                .andExpect(status().isOk());
+        mockMvc.perform(post("/api/auth/signin").contentType(MediaType.APPLICATION_JSON)
+                        .content("{\"username\":\"useruser\",\"password\":\"password\"}"))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    void canSignup() throws Exception {
+        mockMvc.perform(post("/api/auth/signup").contentType(MediaType.APPLICATION_JSON)
+                        .content("{\"username\":\"useruser\",\"password\":\"password\",\"email\":\"test@test.de\"}"))
                 .andExpect(status().isOk());
     }
 
