@@ -30,17 +30,12 @@ import de.volkswagen.security.jwt.JwtUtils;
 import de.volkswagen.security.services.UserDetailsImpl;
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
-@RequestMapping("/api/auth")
 public class AuthController {
-//    @Autowired
+
     AuthenticationManager authenticationManager;
-//    @Autowired
     UserRepository userRepository;
-//    @Autowired
     RoleRepository roleRepository;
-//    @Autowired
     PasswordEncoder encoder;
-//    @Autowired
     JwtUtils jwtUtils;
 
     public AuthController(AuthenticationManager authenticationManager, UserRepository userRepository, RoleRepository roleRepository, PasswordEncoder encoder, JwtUtils jwtUtils) {
@@ -51,7 +46,7 @@ public class AuthController {
         this.jwtUtils = jwtUtils;
     }
 
-    @PostMapping("/signin")
+    @PostMapping("/login")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
@@ -68,7 +63,7 @@ public class AuthController {
                 userDetails.getEmail(),
                 roles));
     }
-    @PostMapping("/signup")
+    @PostMapping("/register")
     public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
         if (userRepository.existsByUsername(signUpRequest.getUsername())) {
             return ResponseEntity
