@@ -14,6 +14,7 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { login } from '../actions/auth';
 import { useDispatch, useSelector } from "react-redux";
+import { Navigate } from "react-router-dom";
 
 function Copyright(props) {
   return (
@@ -29,6 +30,7 @@ function Copyright(props) {
 }
 
 const theme = createTheme();
+//const loggedIn = useSelector(state => state.authReducer.loggedIn);
 
 export default function Login() {
   const dispatch = useDispatch();
@@ -43,6 +45,7 @@ export default function Login() {
   };
 
   return (
+    useSelector(state => state.authReducer.isLoggedIn) ? <Navigate to="/profile"></Navigate> :
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
@@ -110,5 +113,6 @@ export default function Login() {
         <Copyright sx={{ mt: 8, mb: 4 }} />
       </Container>
     </ThemeProvider>
+    
   );
 }
