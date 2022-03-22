@@ -12,13 +12,17 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.http.MediaType;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.security.test.context.support.WithMockUser;
+import org.springframework.test.web.client.RequestMatcher;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import javax.sql.DataSource;
 
 import static org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType.H2;
+import static org.springframework.test.web.client.match.MockRestRequestMatchers.content;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @AutoConfigureMockMvc
@@ -66,13 +70,12 @@ public class AuthControllerTest  {
 
     @Test
     void canRegisterAnAdmin() throws Exception {
+
         mockMvc.perform(post("/api/auth/signup").contentType(MediaType.APPLICATION_JSON)
-                        .content("{\"username\":\"useruser\",\"password\":\"password\",\"email\":\"test@test.de\",\"roles\":[\"ROLE_ADMIN\"]}"))
-                .andExpect(status().isOk());
-        System.out.println(
-                mockMvc.perform(post("/api/auth/signup").contentType(MediaType.APPLICATION_JSON)
-                        .content("{\"username\":\"useruser\",\"password\":\"password\",\"email\":\"test@test.de\",\"roles\":[\"ROLE_ADMIN\"]}"))
-                        .andReturn().toString());
+                        .content("{\"username\":\"useruser\",\"password\":\"password\",\"email\":\"test@test.de\",\"role\":[\"ROLE_ADMIN\"]}"))
+                .andExpect(status().isOk())
+                .andDo(print())
+                .andExpect(MockMvcResultMatchers.content().json("{\"message\":\"User registered successfully with Roles: [ROLE_ADMIN]\"}"));
 //TODO:
 
     }
