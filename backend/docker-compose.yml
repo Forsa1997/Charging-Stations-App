@@ -29,7 +29,9 @@ services:
             "spring.datasource.driverClassName" : "org.postgresql.Driver",
             "spring.jpa.hibernate.ddl-auto" : "update",
             "charging.app.jwtSecret": "VeryTopSecretKey",
-            "charging.app.jwtExpirationMs": "86400000"
+            "charging.app.jwtExpirationMs": "86400000",
+            "spring.jpa.show-sql" : "true",
+            "spring.jpa.properties.hibernate.format_sql" : "true"
           }'
 
 
