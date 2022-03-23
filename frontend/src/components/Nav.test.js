@@ -9,10 +9,12 @@ import Nav from './Nav';
 import {
     BrowserRouter,
 } from "react-router-dom";
+import { Provider } from 'react-redux'
+import store from '../store';
 
 it('renders', () => {
     const div = document.createElement('div')
-    render(<BrowserRouter><Nav /></BrowserRouter>, div)
+    render(<Provider store={store}><BrowserRouter><Nav /></BrowserRouter></Provider>, div)
 })
 
 it('renders a navbar in the App', () => {
@@ -22,7 +24,7 @@ it('renders a navbar in the App', () => {
 
 it('has 4 elements in the Navbar', () => {
     const wrapper = mount(<App />)
-    expect(wrapper.find(MenuItem)).toHaveLength(3);
+    expect(wrapper.find(MenuItem)).toHaveLength(4);
 })
 
 it('render map component when burger map button is clicked', () => {

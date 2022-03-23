@@ -10,8 +10,10 @@ import {
     BrowserRouter,
 } from "react-router-dom";
 import Login from './Nav';
+import { Provider } from 'react-redux'
+import store from '../store';
 
 it('renders', () => {
     const div = document.createElement('div')
-    render(<BrowserRouter><Login /></BrowserRouter>, div)
+    render(<Provider store={store}><BrowserRouter><Login /></BrowserRouter></Provider>, div)
 })
