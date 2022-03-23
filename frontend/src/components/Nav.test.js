@@ -22,7 +22,7 @@ it('renders a navbar in the App', () => {
 
 it('has 4 elements in the Navbar', () => {
     const wrapper = mount(<App />)
-    expect(wrapper.find(MenuItem)).toHaveLength(4);
+    expect(wrapper.find(MenuItem)).toHaveLength(3);
 })
 
 it('render map component when burger map button is clicked', () => {

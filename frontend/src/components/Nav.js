@@ -11,17 +11,22 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate} from 'react-router-dom';
+import { useDispatch } from "react-redux";
+import { logout } from '../actions/auth';
 
-
+const logoutText = "Logout";
+const loginText = "Login";
+const registerText = "Register"
 const pages = ['Map'];
-const settings = ['Profile', 'Account', 'Logout'];
+const settings = [loginText, registerText, logoutText];
 
 const Nav = () => {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
 
     let navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
@@ -31,6 +36,10 @@ const Nav = () => {
     };
 
     const handleCloseNavMenu = (page = "") => {
+        if(page == logoutText){
+            dispatch(logout());
+            page=loginText;
+        }
         setAnchorElNav(null);
         navigate(`/${page.toLowerCase()}`)
     };
@@ -137,7 +146,7 @@ const Nav = () => {
                             onClose={handleCloseUserMenu}
                         >
                             {settings.map((setting) => (
-                                <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                                <MenuItem key={setting} onClick={() => handleCloseNavMenu(setting)}>
                                     <Typography textAlign="center">{setting}</Typography>
                                 </MenuItem>
                             ))}
