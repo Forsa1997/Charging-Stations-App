@@ -36,7 +36,7 @@ const Nav = () => {
     };
 
     const handleCloseNavMenu = (page = "") => {
-        if(page == logoutText){
+        if(page === logoutText){
             dispatch(logout());
             page=loginText;
         }
