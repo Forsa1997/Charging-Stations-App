@@ -20,6 +20,7 @@ import java.util.stream.Stream;
 
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @AutoConfigureMockMvc
@@ -35,7 +36,7 @@ public class ContentControllerTest {
     @Test
     @WithMockUser(username="admin",roles={"USER","ADMIN"})
     void callToUserProfile_OfLoggedInUser_ReturnsUserData() throws Exception {
-        User testUser = new User("testuser", "testuser@vw.de", "testuserPW");
+        User testUser = new User("firstName", "lastName","testuser", "testuser@vw.de", "testuserPW");
         testUser.setId(3L);
         Role moderatorRole = new Role();
         Role userRole = new Role();
@@ -48,7 +49,8 @@ public class ContentControllerTest {
 
         mockMvc.perform(get("/profile"))
                 .andExpect(status().isOk())
-                .andExpect(MockMvcResultMatchers.content().json("{\"id\":3,\"username\":\"testuser\",\"email\":\"testuser@vw.de\",\"roles\":[\"ROLE_USER\",\"ROLE_MODERATOR\"]}"));
+                .andDo(print())
+                .andExpect(MockMvcResultMatchers.content().json("{\"id\":3,\"firstName\":\"firstName\",\"lastName\":\"lastName\",\"username\":\"testuser\",\"email\":\"testuser@vw.de\",\"roles\":[\"ROLE_USER\",\"ROLE_MODERATOR\"]}"));
     }
 
     @Test

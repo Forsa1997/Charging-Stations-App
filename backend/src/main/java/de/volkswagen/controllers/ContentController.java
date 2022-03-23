@@ -38,7 +38,7 @@ public class ContentController {
         Optional<User> optionalUser = userRepository.findByUsername(username);
         try {
             User currentUser = optionalUser.get();
-            ProfileResponse profileResponse = new ProfileResponse(currentUser.getId(), currentUser.getUsername(), currentUser.getEmail(), currentUser.getRoles());
+            ProfileResponse profileResponse = new ProfileResponse(currentUser.getId(), currentUser.getFirstName(), currentUser.getLastName(), currentUser.getUsername(), currentUser.getEmail(), currentUser.getRoles());
             return ResponseEntity.ok(profileResponse);
         } catch (NoSuchElementException e) {
             return ResponseEntity.badRequest().build();

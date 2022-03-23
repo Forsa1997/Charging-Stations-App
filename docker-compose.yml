@@ -10,9 +10,9 @@ services:
     ports:
       - 5432:5432
     volumes:
-      - ./src/main/resources/data.sql:/docker-entrypoint-initdb.d/initdb.sql
+      - ./backend/src/main/resources/data.sql:/docker-entrypoint-initdb.d/initdb.sql
 
-  main:
+  spring:
     image: kaano29/charging-station-backend
     restart: on-failure
     depends_on:
@@ -34,5 +34,18 @@ services:
             "spring.jpa.properties.hibernate.format_sql" : "true"
           }'
 
+  react:
+    image: kaano29/charging-stations-frontend
+    ports: 
+      - 3000:3000
+    volumes: 
+      - ./frontend/src:/app/src
+      - ./frontend/public/assets:/app/public/assets
+      - /app/node_modules
+    stdin_open: true
+    command: npm start
+
+
+  
 
 
